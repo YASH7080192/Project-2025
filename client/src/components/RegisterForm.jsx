@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { registerUser } from "../api"; // Import API function
 
 export default function RegisterForm() {
   const [formData, setFormData] = useState({
@@ -9,14 +10,22 @@ export default function RegisterForm() {
     address: "",
   });
 
+  const [message, setMessage] = useState(""); // State for success/error messages
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
+    try {
+      const response = await registerUser(formData);
+      setMessage(response.data.message); // Show success message
+      setFormData({ name: "", email: "", password: "", gender: "", address: "" }); // Clear form
+    } catch (error) {
+      setMessage(error.response?.data?.message || "Registration failed!");
+    }
   };
 
   return (
@@ -25,103 +34,57 @@ export default function RegisterForm() {
         onSubmit={handleSubmit}
         className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg"
       >
-        <h2 className="text-2xl font-bold text-center mb-4 text-gray-700">
-          Register
-        </h2>
+        <h2 className="text-2xl font-bold text-center mb-4 text-gray-700">Register</h2>
+
+        {/* Success/Error Message */}
+        {message && <p className="text-center text-red-500">{message}</p>}
 
         <div className="grid grid-cols-1 gap-4">
-          {/* Name Field */}
           <div>
-            <label className="block text-gray-600 text-sm font-medium">
-              Full Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
+            <label className="block text-gray-600 text-sm font-medium">Full Name</label>
+            <input type="text" name="name" value={formData.name} onChange={handleChange}
               className="mt-1 p-3 w-full border rounded-md focus:ring-2 focus:ring-blue-400"
-              placeholder="Enter your name"
-              required
-            />
+              placeholder="Enter your name" required />
           </div>
 
-          {/* Email Field */}
           <div>
-            <label className="block text-gray-600 text-sm font-medium">
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
+            <label className="block text-gray-600 text-sm font-medium">Email</label>
+            <input type="email" name="email" value={formData.email} onChange={handleChange}
               className="mt-1 p-3 w-full border rounded-md focus:ring-2 focus:ring-blue-400"
-              placeholder="Enter your email"
-              required
-            />
+              placeholder="Enter your email" required />
           </div>
 
-          {/* Password Field */}
           <div>
-            <label className="block text-gray-600 text-sm font-medium">
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
+            <label className="block text-gray-600 text-sm font-medium">Password</label>
+            <input type="password" name="password" value={formData.password} onChange={handleChange}
               className="mt-1 p-3 w-full border rounded-md focus:ring-2 focus:ring-blue-400"
-              placeholder="Enter password"
-              required
-            />
+              placeholder="Enter password" required />
           </div>
 
-          {/* Gender Field */}
           <div>
-            <label className="block text-gray-600 text-sm font-medium">
-              Gender
-            </label>
-            <select
-              name="gender"
-              value={formData.gender}
-              onChange={handleChange}
-              className="mt-1 p-3 w-full border rounded-md focus:ring-2 focus:ring-blue-400"
-              required
-            >
+            <label className="block text-gray-600 text-sm font-medium">Gender</label>
+            <select name="gender" value={formData.gender} onChange={handleChange}
+              className="mt-1 p-3 w-full border rounded-md focus:ring-2 focus:ring-blue-400" required>
               <option value="">Select Gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
             </select>
           </div>
 
-          {/* Address Field */}
           <div>
-            <label className="block text-gray-600 text-sm font-medium">
-              Address
-            </label>
-            <textarea
-              name="address"
-              value={formData.address}
-              onChange={handleChange}
+            <label className="block text-gray-600 text-sm font-medium">Address</label>
+            <textarea name="address" value={formData.address} onChange={handleChange}
               className="mt-1 p-3 w-full border rounded-md focus:ring-2 focus:ring-blue-400"
-              placeholder="Enter your address"
-              required
-            ></textarea>
+              placeholder="Enter your address" required></textarea>
           </div>
         </div>
 
-        {/* Submit Button */}
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white p-3 rounded-md mt-4 hover:bg-blue-600 transition"
-        >
+        <button type="submit"
+          className="w-full bg-blue-500 text-white p-3 rounded-md mt-4 hover:bg-blue-600 transition">
           Register
         </button>
       </form>
     </div>
   );
 }
-

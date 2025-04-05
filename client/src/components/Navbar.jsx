@@ -37,6 +37,11 @@ export default function Navbar() {
               Register
             </Link>
           </li>
+          <li>
+            <Link to="EngineerJobForm" className="text-white hover:text-gray-200">
+            EngineerJobForm
+            </Link>
+          </li>
         </ul>
 
         {/* Mobile Menu Button */}
@@ -104,9 +109,15 @@ export default function Navbar() {
           </li>
           <li>
             <Link to="/signup" className="text-white hover:text-gray-200">
+          
               Register
             </Link>
           </li>
+          <li>
+          <Link to="/signup" className="text-white hover:text-gray-200">
+            EngineerJobForm
+            </Link>
+            </li>
         </ul>
       )}
     </nav>

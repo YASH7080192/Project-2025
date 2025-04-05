@@ -1,20 +1,28 @@
 import { useState } from "react";
+import { loginUser } from "../api"; // 
 
 export default function LoginForm() {
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     password: "",
   });
+  const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Login Data:", formData);
+    try {
+      const response = await loginUser(formData);
+      setMessage(response.data.message);
+      console.log("🔐 Token:", response.data.token);
+      localStorage.setItem("token", response.data.token); // Save token
+    } catch (error) {
+      setMessage(error.response?.data?.message || "Login failed!");
+    }
   };
 
   return (
@@ -27,23 +35,11 @@ export default function LoginForm() {
           Login
         </h2>
 
-        <div className="grid grid-cols-1 gap-4">
-          {/* Name Field */}
-          <div>
-            <label className="block text-gray-600 text-sm font-medium">
-              Full Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className="mt-1 p-3 w-full border rounded-md focus:ring-2 focus:ring-blue-400"
-              placeholder="Enter your name"
-              required
-            />
-          </div>
+        {message && (
+          <p className="text-center mb-2 text-red-500 font-medium">{message}</p>
+        )}
 
+        <div className="grid grid-cols-1 gap-4">
           {/* Email Field */}
           <div>
             <label className="block text-gray-600 text-sm font-medium">
@@ -77,7 +73,6 @@ export default function LoginForm() {
           </div>
         </div>
 
-        {/* Submit Button */}
         <button
           type="submit"
           className="w-full bg-blue-500 text-white p-3 rounded-md mt-4 hover:bg-blue-600 transition"
