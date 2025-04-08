@@ -1,28 +1,26 @@
-import { useState } from 'react'
-import Home from './pages/Home'
-import About from './pages/About'
-import Contact from './pages/contact'
-import Signin from './pages/Signin'
-import Signup from './pages/Signup'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import LoginForm from "./components/LoginForm";
+import RegisterForm from "./components/RegisterForm";
+import EngineerJobForm from "./pages/EngineerJobForm";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <center>
     <Router>
+      <Navbar />
       <Routes>
-       
-      <Route path='/' element={<Home/>}></Route>
-      <Route path='/about' element={<About/>}></Route>
-      <Route path='/contact' element={<Contact/>}></Route>
-      <Route path='/signin' element={<Signin/>}></Route>
-      <Route path='/Signup' element={<Signup/>}></Route>
-    </Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/signin" element={<LoginForm />} />
+        <Route path="/signup" element={<RegisterForm />} />
+        <Route path="/engineer-job-form" element={<EngineerJobForm />} />
+      </Routes>
     </Router>
-    </center>
-  )
+  );
 }
 
-export default App
+export default App;
