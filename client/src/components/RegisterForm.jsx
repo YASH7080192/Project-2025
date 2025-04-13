@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // 👈 Import this
 import { registerUser } from "../api"; // Import API function
 
 export default function RegisterForm() {
@@ -11,6 +12,7 @@ export default function RegisterForm() {
   });
 
   const [message, setMessage] = useState(""); // State for success/error messages
+  const navigate = useNavigate(); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,7 +25,12 @@ export default function RegisterForm() {
       const response = await registerUser(formData);
       setMessage(response.data.message); // Show success message
       setFormData({ name: "", email: "", password: "", gender: "", address: "" }); // Clear form
+      setTimeout(() => {
+        navigate("/signin"); // 👈 Navigate to login page
+      }, 1000); // Optional: wait 1 sec to show success message
+      
     } catch (error) {
+      console.log("Registration error:", error.response?.data); // 👈 Yeh line add ki gayi hai
       setMessage(error.response?.data?.message || "Registration failed!");
     }
   };

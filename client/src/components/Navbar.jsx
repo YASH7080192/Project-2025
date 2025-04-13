@@ -7,41 +7,16 @@ export default function Navbar() {
   return (
     <nav className="bg-blue-500 p-4 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
-        {/* Logo / Company Name */}
         <h1 className="text-white text-2xl font-bold">HiringEngineers</h1>
 
         {/* Desktop Navigation */}
         <ul className="hidden md:flex space-x-6">
-          <li>
-            <Link to="/" className="text-white hover:text-gray-200">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/about" className="text-white hover:text-gray-200">
-              About
-            </Link>
-          </li>
-          <li>
-            <Link to="/contact" className="text-white hover:text-gray-200">
-              Contact
-            </Link>
-          </li>
-          <li>
-            <Link to="/signin" className="text-white hover:text-gray-200">
-              Login
-            </Link>
-          </li>
-          <li>
-            <Link to="/signup" className="text-white hover:text-gray-200">
-              Register
-            </Link>
-          </li>
-          <li>
-            <Link to="/engineer-job-form" className="text-white hover:text-gray-200">
-              Engineer Form
-            </Link>
-          </li>
+          <li><Link to="/" className="text-white hover:text-gray-200">Home</Link></li>
+          <li><Link to="/about" className="text-white hover:text-gray-200">About</Link></li>
+          <li><Link to="/contact" className="text-white hover:text-gray-200">Contact</Link></li>
+          <li><Link to="/signin" className="text-white hover:text-gray-200">Login</Link></li>
+          <li><Link to="/signup" className="text-white hover:text-gray-200">Register</Link></li>
+          <li><Link to="/engineer-job-form" className="text-white hover:text-gray-200">Engineers</Link></li>
         </ul>
 
         {/* Mobile Menu Button */}
@@ -64,36 +39,12 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {isOpen && (
         <ul className="md:hidden bg-blue-600 mt-2 p-4 space-y-2">
-          <li>
-            <Link to="/" className="text-white hover:text-gray-200">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/about" className="text-white hover:text-gray-200">
-              About
-            </Link>
-          </li>
-          <li>
-            <Link to="/contact" className="text-white hover:text-gray-200">
-              Contact
-            </Link>
-          </li>
-          <li>
-            <Link to="/signin" className="text-white hover:text-gray-200">
-              Login
-            </Link>
-          </li>
-          <li>
-            <Link to="/signup" className="text-white hover:text-gray-200">
-              Register
-            </Link>
-          </li>
-          <li>
-            <Link to="/engineer-job-form" className="text-white hover:text-gray-200">
-              Engineer Form
-            </Link>
-          </li>
+          <li><Link to="/" className="text-white hover:text-gray-200">Home</Link></li>
+          <li><Link to="/about" className="text-white hover:text-gray-200">About</Link></li>
+          <li><Link to="/contact" className="text-white hover:text-gray-200">Contact</Link></li>
+          <li><Link to="/signin" className="text-white hover:text-gray-200">Login</Link></li>
+          <li><Link to="/signup" className="text-white hover:text-gray-200">Register</Link></li>
+          <li><Link to="/engineer-job-form" className="text-white hover:text-gray-200">Engineers</Link></li>
         </ul>
       )}
     </nav>

@@ -1,6 +1,8 @@
 import express from "express";
 import User from "../Models/User.js";
 import jwt from "jsonwebtoken";
+import Job from "../Models/job.model.js";
+import mongoose from "mongoose";
 
 const router = express.Router();
 
@@ -52,6 +54,22 @@ router.post("/login", async (req, res) => {
     res.status(200).json({ message: "Login Successful", token, user: { id: user._id, name: user.name, email: user.email } });
   } catch (error) {
     res.status(500).json({ message: "Server Error", error });
+  }
+});
+
+// GET /api/users/:userId/hired-engineers
+router.get("/:userId/hired-engineers", async (req, res) => {
+  const { userId } = req.params;
+  console.log("runned the file ")
+
+  try {
+    const hiredEngineers = await Job.find({
+      hiredBy: new mongoose.Types.ObjectId(userId)
+    });    console.log(hiredEngineers)
+    res.status(200).json({ hiredEngineers });
+  } catch (err) {
+    console.error("Fetch Hired Engineers Error:", err);
+    res.status(500).json({ message: "Failed to fetch hired engineers." });
   }
 });
 

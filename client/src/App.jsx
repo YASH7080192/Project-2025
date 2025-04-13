@@ -5,7 +5,13 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
-import EngineerJobForm from "./pages/EngineerJobForm";
+import EngineerAuth from "./pages/EngineerJobForm";
+import UserDashboard from "./pages/userDashboard";
+import HiredEngineers from "./pages/hiredEngineer";
+import EngineerDashboard from "./pages/enginneerDashboard";
+
+// Inside Routes
+
 
 function App() {
   return (
@@ -17,7 +23,10 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/signin" element={<LoginForm />} />
         <Route path="/signup" element={<RegisterForm />} />
-        <Route path="/engineer-job-form" element={<EngineerJobForm />} />
+        <Route path="/engineer-job-form" element={<EngineerAuth />} />
+        <Route path="/dashboard" element={<UserDashboard />} />
+        <Route path="/hired-engineers" element={<HiredEngineers />} />
+        <Route path="/engineer-dashboard" element={<EngineerDashboard />} />
       </Routes>
     </Router>
   );
