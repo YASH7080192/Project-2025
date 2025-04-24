@@ -11,6 +11,7 @@ const UserDashboard = () => {
     "Uttar Pradesh", "Madhya Pradesh", "Bihar", "Delhi", "Maharashtra", "Punjab",
   ]);
   const [engineers, setEngineers] = useState([]);
+  const baseUrl = import.meta.env.VITE_REACT_APP
 
   const navigate = useNavigate();
 
@@ -18,7 +19,7 @@ const UserDashboard = () => {
     const state = e.target.value;
     setSelectedState(state);
     try {
-      const res = await axios.get(`http://localhost:3033/api/jobs/state/${state}`);
+      const res = await axios.get(`${baseUrl}/api/jobs/state/${state}`);
       setEngineers(res.data.engineers);
     } catch (error) {
       console.error("Failed to fetch engineers:", error);
@@ -27,7 +28,7 @@ const UserDashboard = () => {
 
   const handleHire = async (engineerId) => {
     try {
-      const res = await axios.post("http://localhost:3033/api/hire", {
+      const res = await axios.post(`${baseUrl}/api/hire`, {
         engineerId,
         userId,
       });

@@ -15,8 +15,8 @@ export default function Footer() {
             <h3 className="text-xl font-semibold">Quick Links</h3>
             <ul className="mt-2 space-y-2">
               <li><a href="#" className="hover:text-gray-400">Home</a></li>
-              <li><a href="#" className="hover:text-gray-400">About</a></li>
-              <li><a href="#" className="hover:text-gray-400">Contact</a></li>
+              <li><a href="About" className="hover:text-gray-400">About</a></li>
+              <li><a href="contact" className="hover:text-gray-400">Contact</a></li>
             </ul>
           </div>
   
@@ -24,9 +24,9 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-semibold">Follow Us</h3>
             <div className="flex space-x-4 mt-2">
-              <a href="#" className="hover:text-gray-400">🔵 Facebook</a>
-              <a href="#" className="hover:text-gray-400">🟢 LinkedIn</a>
-              <a href="#" className="hover:text-gray-400">🔴 YouTube</a>
+              <a href="https://www.facebook.com/share/16BiqvjunQ/" className="hover:text-gray-400">🔵 Facebook</a>
+              <a href="https://www.instagram.com/goswami_vis?igsh=MTUybWt5dDRxM3dzdg==" className="hover:text-gray-400">🟢 instagram</a>
+              <a href="https://x.com/vishal677665544?t=1JogJ-8xryeufBLJn83hWw&s=09" className="hover:text-gray-400">🔴 x</a>
             </div>
           </div>
         </div>

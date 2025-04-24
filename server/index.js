@@ -1,6 +1,11 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
+import dotenv from 'dotenv'
+
+dotenv.config({
+  path : './.env'
+})
 
 import userRoutes from "./routes/auth.routes.js";
 import jobRoutes from "./routes/job.routes.js";
@@ -13,13 +18,13 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.FRONTEND_URI,
     credentials: true,
   })
 );
 
 mongoose
-  .connect("mongodb+srv://ldhar3359:yashwant123@cluster0.au1ua.mongodb.net/homeEngineer")
+  .connect(process.env.MONGO_URI)
   .then(() => {
     console.log(`✅ MongoDB Connected on host: ${mongoose.connection.host}`);
   })

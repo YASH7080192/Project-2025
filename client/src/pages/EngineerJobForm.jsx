@@ -18,6 +18,7 @@ const EngineerAuth = () => {
   const [loginPassword, setLoginPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const navigate = useNavigate();
+  const baseUrl = import.meta.env.VITE_REACT_APP
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,7 +42,7 @@ const EngineerAuth = () => {
     }
 
     try {
-      await axios.post("http://localhost:3033/api/jobs/register", formData);
+      await axios.post(`${baseUrl}/api/jobs/register`, formData);
       alert("✅ Registered successfully!");
       setIsRegistered(true);
     } catch (error) {
@@ -52,7 +53,7 @@ const EngineerAuth = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3033/api/jobs/login", {
+      const res = await axios.post(`${baseUrl}/api/jobs/login`, {
         email: loginEmail,
         password: loginPassword,
       });

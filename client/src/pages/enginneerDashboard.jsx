@@ -9,7 +9,7 @@ const EngineerDashboard = () => {
   useEffect(() => {
     const fetchHiringUsers = async () => {
       try {
-        const res = await axios.get(`http://localhost:3033/api/jobs/${engineerId}/hiring-users`);
+        const res = await axios.get(`${import.meta.env.VITE_REACT_APP}/api/jobs/${engineerId}/hiring-users`);
         setHiringUsers(res.data);
       } catch (error) {
         console.error("Failed to fetch hiring users:", error);

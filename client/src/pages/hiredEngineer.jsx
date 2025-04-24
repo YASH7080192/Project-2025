@@ -10,7 +10,7 @@ const HiredEngineers = ({ userId }) => {
       try {
         const userId = localStorage.getItem("userId");
         console.log("userId : ",userId)
-        const res = await axios.get(`http://localhost:3033/api/users/${userId}/hired-engineers`);
+        const res = await axios.get(`${import.meta.env.VITE_REACT_APP}/api/users/${userId}/hired-engineers`);
         setEngineers(res.data.hiredEngineers);
       } catch (error) {
         console.error("Error fetching hired engineers:", error);
