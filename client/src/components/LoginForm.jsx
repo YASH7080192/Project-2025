@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { loginUser } from "../api"; // 
-import { useNavigate } from "react-router-dom"; // 👈 Import this
+import { useNavigate } from "react-router-dom"; 
 
 export default function LoginForm() {
   const [formData, setFormData] = useState({
@@ -21,11 +21,11 @@ export default function LoginForm() {
       const response = await loginUser(formData);
       setMessage(response.data.message);
       console.log("🔐 Token:", response.data.token);
-      localStorage.setItem("token", response.data.token); // Save token
+      localStorage.setItem("token", response.data.token); 
       localStorage.setItem("userId", response.data.user.id);
       setTimeout(() => {
-        navigate("/dashboard"); // 👈 Navigate to login page
-      }, 1000); // Optional: wait 1 sec to show success message
+        navigate("/dashboard");  
+      }, 1000); 
       
     } catch (error) {
       setMessage(error.response?.data?.message || "Login failed!");

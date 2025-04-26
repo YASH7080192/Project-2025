@@ -30,7 +30,7 @@ export default function RegisterForm() {
       }, 1000); // Optional: wait 1 sec to show success message
       
     } catch (error) {
-      console.log("Registration error:", error.response?.data); // 👈 Yeh line add ki gayi hai
+      console.log("Registration error:", error.response?.data); 
       setMessage(error.response?.data?.message || "Registration failed!");
     }
   };
